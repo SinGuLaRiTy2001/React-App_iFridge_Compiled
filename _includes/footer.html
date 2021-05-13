@@ -1,0 +1,53 @@
+<!--网站计时-->
+<script>
+    function secondToDate(second) {
+        if (!second) {
+            return 0;
+        }
+        var time = new Array(0, 0, 0, 0, 0);
+        if (second >= 365 * 24 * 3600) {
+            time[0] = parseInt(second / (365 * 24 * 3600));
+            second %= 365 * 24 * 3600;
+        }
+        if (second >= 24 * 3600) {
+            time[1] = parseInt(second / (24 * 3600));
+            second %= 24 * 3600;
+        }
+        if (second >= 3600) {
+            time[2] = parseInt(second / 3600);
+            second %= 3600;
+        }
+        if (second >= 60) {
+            time[3] = parseInt(second / 60);
+            second %= 60;
+        }
+        if (second > 0) {
+            time[4] = second;
+        }
+        return time;
+    }</script>
+<script type="text/javascript" language="javascript">
+    function setTime() {
+        var create_time = Math.round(new Date(Date.UTC(2019, 12, 24, 17, 42, 23)).getTime() / 1000);
+        var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
+        currentTime = secondToDate((timestamp - create_time));
+        currentTimeHtml = '<b>H₂O</b> has been running for ' + currentTime[0] + 'y ' + currentTime[1] + 'd '
+                + currentTime[2] + 'h ' + currentTime[3] + 'm ' + currentTime[4]
+                + 's';
+        document.getElementById("htmer_time").innerHTML = currentTimeHtml;
+    }    setInterval(setTime, 1000);
+</script>
+
+<footer class="g-footer">
+  <section>{{ site.title }} ©
+  {% assign current = "now" | date: "%Y" | plus: 0%}
+  {% unless site.footer.since and site.footer.since == current %}
+    {{ site.footer.since }}
+    -
+  {% endunless %}
+  {{ current }}
+  </section>
+  <section>2H₂O=2H₂↑+O₂↑</sectione>
+  <section> <span id="htmer_time" "></span> </section>
+  <section>Powered by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a> | <a href="//jekyllrb.com" target="_blank">Jekyll</a> | <a href="//leancloud.cn/" target="_blank">LeanCloud</a> </section>
+</footer>

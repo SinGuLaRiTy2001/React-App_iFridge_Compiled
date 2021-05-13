@@ -1,0 +1,15 @@
+<header class="g-header animated fadeInDown">
+    <script src="https://singularity2001.github.io/assets/js/cursor_effects.js"></script>
+    <link rel="stylesheet" href="https://singularity2001.github.io/assets/css/CSS_transition.css">
+    <div class="g-logo">
+      <a href="{{ "/" | relative_url }}"></a>
+    </div>
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            {% for i in site.nav %}
+            <li><a href="{{ i[1] | relative_url}}" target="_blank">{{ i[0] }}</a></li>
+            {% endfor %}
+        </ul>
+    </nav>
+</header>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+{% include post-head.html %}
+
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">害，怎么不更新浏览器呢？赶快更新一下吧~<a target="_blank" class="alert-link" href="http://browsehappy.com">Update Now</a></div>
+<![endif]-->
+  <input id="nm-switch" type="hidden" value="{{ site.nightMode }}"> {% include header.html %}
+
+  <header
+    class="g-banner post-header {{ site.postPatterns | prepend: 'post-pattern-' }} {{ site.theme-color | prepend: 'bgcolor-' }} {% unless page.cover %}post-no-cover{% endunless %}"
+    data-theme="{{ site.theme-color }}"
+  >
+    <div class="post-wrapper animated fadeIn delay-1s">
+      <div class="post-tags">
+        {% if page.tags.size > 0 %}
+          {% for tag in page.tags  %}
+            <a href="{{ "/tags.html#" | append: tag | relative_url }}" class="post-tag">{{ tag }}</a>
+          {% endfor %}
+        {% endif %}
+      </div>
+      <h1>{{ page.title }}</h1>
+      <div class="post-meta">
+        <span class="post-meta-item"><i class="iconfont icon-author"></i>{% if page.author %}{{ page.author }}{% else %}{{ site.author }}{% endif %}</span>
+        <time class="post-meta-item" datetime="{{ page.date | date:"%y-%m-%d" }}"><i class="iconfont icon-date"></i>{{ page.date | date_to_string }}</time>
+      </div>
+    </div>
+    {% if page.cover %}
+    <div class="filter"></div>
+      <div class="post-cover" style="background: url('{{ page.cover | relative_url }}') center no-repeat; background-size: cover;"></div>
+    {% endif %}
+  </header>
+	
+  <div id="toc" class="g-toc animated fadeIn delay-1s"></div>
+  <script type="text/javascript">
+	$(document).ready(function() {
+   	       $('#toc').toc();
+	});
+  </script>
+  <script type="text/javascript">
+	  window.onscroll = function () {
+            // 滚动时当前位置距顶部的距离
+            var topScroll = document.documentElement.scrollTop;
+            console.log(topScroll)
+            // 获取导航id
+            var toc = document.getElementById("toc");
+            // 滚动距离大于多少时执行下面事件
+            if (topScroll > 440) {
+                // console.log(ihkh)
+                // 到了那个距离相当于给了导航定位
+                toc.style.position = 'fixed';
+                toc.style.top = '60px';
+                toc.style.zIndex = '999'
+            } else {
+                // 小于的时候让他恢复原状
+                toc.style = ''
+            }
+        }
+  </script>
+  <style>
+	  #toc 
+	  {
+		font-family: Merriweather-Light,-apple-system,Verdana,"PingFang SC","Helvetica Neue",Arial,"Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+	  	width: 260px; 
+		position: absolute; 
+		top: 500px; 
+		right: 40px; 
+		z-index: 999;
+                /*background-color: white;*/
+                /*border-radius: 5px;*/
+                /*box-shadow: 1px 3px 5px rgba(0, 37, 55, .06);*/
+                padding: 10px 10px 10px 0px;
+	  }
+	  #toc ul 
+	  {
+	  	position: relative;
+		left: 20px;
+	  }
+	  .toctitle
+	  {
+		font-weight: bolder;
+		position: relative;
+		left: 20px;  
+		font-size: 20px;  
+	  }
+	  @media screen and (max-device-width:1639px) 
+	  {
+	     #toc
+	     {
+		     display: none;
+	     }
+	  }
+	  #toc li
+	  {
+	  	width: 200px !important;
+	  }
+	  #toc i
+	  {
+	  	font-style: normal !important;
+	  }
+	  #toc a
+	  {
+	  	transition: all .5s;
+		-webkit-transition: all .5s;
+	  }
+	  #toc a:link
+	  {
+	  	transition: all .5s;
+		-webkit-transition: all .5s;
+	  }
+	  #toc a:visited
+	  {
+		transition: all .5s;  
+		-webkit-transition: all .5s;  
+	  }
+	  #toc a:hover
+	  {
+	  	color: rgb(14,104,176);
+		transition: all .5s;  
+		-webkit-transition: all .5s;  
+	  }
+	  #toc a:active
+	  {
+	  	color: rgb(14,104,176);
+		transition: all .5s;  
+		-webkit-transition: all .5s;  
+	  }
+/* Icon Rotate */
+.hvr-icon-rotate {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+.hvr-icon-rotate .hvr-icon {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-icon-rotate:hover .hvr-icon, .hvr-icon-rotate:focus .hvr-icon, .hvr-icon-rotate:active .hvr-icon {
+  -webkit-transform: rotate(20deg);
+  transform: rotate(20deg);
+}
+  </style>
+
+  <div class="post-content visible animated fadeIn delay-1s">
+    {% if page.subtitle %}
+    <h2 class="post-subtitle">{{ page.subtitle }}</h2>
+    {% endif %}
+
+    <article class="markdown-body">
+      {{ page.content }}
+    </article>
+	  
+    <div class="vcomment"></div>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/valine"></script>   -->
+    <style>
+	    @media screen and (min-device-width:960px) 
+	    {
+	    	.vcomment 
+		{
+		     margin: auto; 
+		     width: 1000px;
+		}
+	    }
+    </style>
+          
+    <script src="https://valine.js.org/script/Valine.min.js"></script>
+    <script>
+            var valine = new Valine();
+            var path = window.location.pathname.replace('index.html','');
+            var isEN = path.indexOf('en') > -1;
+            path = isEN ? path.replace('en/','') : path;
+            valine.init({
+                el: '.vcomment',
+                appId: '8qNkoRIv3uNUUCAbMpTKLuEd-gzGzoHsz',
+                appKey: 'G4oxyUj2zeeUiFhRz5HeYYpD',
+                placeholder: 'Say something? 想说些什么？',
+                avatar:'mp',
+                path:path,
+                recordIP:true,
+                lang: isEN ? 'en' : 'zh-cn',
+                visitor:true,
+                mathJax: true,
+		    
+		// 设置Bilibili表情包地址
+                emojiCDN: '//i0.hdslb.com/bfs/emote/', 
+                // 表情title和图片映射
+                emojiMaps: {
+                    "tv_doge": "6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+                    "tv_亲亲": "a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+                    "tv_偷笑": "bb690d4107620f1c15cff29509db529a73aee261.png",
+                    "tv_再见": "180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+                    "tv_冷漠": "b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+                    "tv_发怒": "34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+                    "tv_发财": "34db290afd2963723c6eb3c4560667db7253a21a.png",
+                    "tv_可爱": "9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+                    "tv_吐血": "09dd16a7aa59b77baa1155d47484409624470c77.png",
+                    "tv_呆": "fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+                    "tv_呕吐": "9f996894a39e282ccf5e66856af49483f81870f3.png",
+                    "tv_困": "241ee304e44c0af029adceb294399391e4737ef2.png",
+                    "tv_坏笑": "1f0b87f731a671079842116e0991c91c2c88645a.png",
+                    "tv_大佬": "093c1e2c490161aca397afc45573c877cdead616.png",
+                    "tv_大哭": "23269aeb35f99daee28dda129676f6e9ea87934f.png",
+                    "tv_委屈": "d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+                    "tv_害羞": "a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+                    "tv_尴尬": "7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+                    "tv_微笑": "70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+                    "tv_思考": "90cf159733e558137ed20aa04d09964436f618a1.png",
+                    "tv_惊吓": "0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+                    "tv_打脸": "56ab10b624063e966bfcb76ea5dc4794d87dfd47.png",
+                    "tv_抓狂": "fe31c08edad661d63762b04e17b8d5ae3c71a757.png",
+                    "tv_抠鼻": "c666f55e88d471e51bbd9fab9bb308110824a6eb.png",
+                    "tv_斜眼笑": "911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png",
+                    "tv_无奈": "ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png",
+                    "tv_晕": "5443c22b4d07fb1907ccc610c8e6db254f2461b7.png",
+                    "tv_流汗": "cead1c351ab8d79e9f369605beb90148db0fbed3.png",
+                    "tv_流泪": "7e71cde7858f0cd50d74b0264aa26db612a8a167.png",
+                    "tv_流鼻血": "c32d39db2737f89b904ca32700d140a9241b0767.png",
+                    "tv_点赞": "f85c354995bd99e28fc76c869bfe42ba6438eff4.png",
+                    "tv_生气": "26702dcafdab5e8225b43ffd23c94ac1ff932654.png",
+                    "tv_生病": "8b0ec90e6b86771092a498c54f09fc94621c1900.png",
+                    "tv_疑问": "0793d949b18d7be716078349c202c15ff166f314.png",
+                    "tv_白眼": "c1d59f439e379ee50eef488bcb5e5378e5044ea4.png",
+                    "tv_皱眉": "72ccad6679fea0d14cce648b4d818e09b8ffea2d.png",
+                    "tv_目瞪口呆": "0b8cb81a68de5d5365212c99375e7ace3e7891b7.png",
+                    "tv_睡着": "8b196675b53af58264f383c50ad0945048290b33.png",
+                    "tv_笑哭": "1abc628f6d4f4caf9d0e7800878f4697abbc8273.png",
+                    "tv_腼腆": "89712c0d4af73e67f89e35cbc518420380a7f6f4.png",
+                    "tv_色": "61822c7e9aae5da76475e7892534545336b23a6f.png",
+                    "tv_调侃": "4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png",
+                    "tv_调皮": "b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png",
+                    "tv_鄙视": "6e72339f346a692a495b123174b49e4e8e781303.png",
+                    "tv_闭嘴": "c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png",
+                    "tv_难过": "87f46748d3f142ebc6586ff58860d0e2fc8263ba.png",
+                    "tv_馋": "fc7e829b845c43c623c8b490ee3602b7f0e76a31.png",
+                    "tv_鬼脸": "0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png",
+                    "tv_黑人问号": "45821a01f51bc867da9edbaa2e070410819a95b2.png",
+                    "tv_鼓掌": "1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png"
+                } 
+           })
+    </script>
+	  
+    {% if site.social-share %}
+    <div class="social-share-wrapper">
+      <div class="social-share"></div>
+    </div>
+    {% endif %}
+  </div>
+
+  <section class="author-detail">
+    <section class="post-footer-item author-card">
+      <div class="avatar">
+        <img src="{{ site.avatar | relative_url }}" alt="">
+      </div>
+      <div class="author-name" rel="author">{{ site.author }}</div>
+      <div class="bio">
+        <p>{{ site.bio }}</p>
+      </div>
+      {% if site.sns.size > 0 %}
+      <ul class="sns-links">
+        {% for s in site.sns %}
+        <li>
+          <a href="{{ s[1] }}" target="_blank">
+                    <i class="iconfont icon-{{ s[0] }}"></i>
+                </a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </section>
+    
+    <section class="post-footer-item read-next">
+      {% if page.next.url %}
+      <div class="read-next-item">
+        <a href="{{ page.next.url | relative_url }}" class="read-next-link"></a>
+        <section>
+          <span>{{ page.next.title }}</span>
+          <p>{{ page.next.excerpt | strip_html | strip_newlines | truncate: 60}}</p>
+        </section>
+        {% if page.next.cover %}
+        <div class="filter"></div>
+        <img src="{{ page.next.cover | relative_url }}" alt="">
+        {% endif %}
+     </div>
+      {% endif %}
+
+      {% if page.previous.url %}
+      <div class="read-next-item">
+        <a href="{{ page.previous.url | relative_url }}" class="read-next-link"></a>
+          <section>
+            <span>{{ page.previous.title }}</span>
+            <p>{{ page.previous.excerpt | strip_html | strip_newlines | truncate: 60}}</p>
+          </section>
+          {% if page.previous.cover %}
+          <div class="filter"></div>
+          <img src="{{ page.previous.cover | relative_url }}" alt="">
+          {% endif %}
+      </div>
+      {% endif %}
+    </section>
+    {% if site.comments.disqus %}
+    <section class="post-footer-item comment">
+        <div id="disqus_thread"></div>
+    </section>
+    {% endif %}
+  </section>
+
+  {% include footer.html %}
+
+  <script src="{{ "/assets/js/social-share.min.js" | relative_url }}"></script>
+  <script>
+    socialShare('.social-share', {
+      sites: [
+        {% for i in site.social-share-items %}
+          '{{ i }}'
+          {% if forloop.last == false %},
+          {% endif %}
+        {% endfor %}
+      ],
+      wechatQrcodeTitle: "Share this in Wechat Moments",
+      wechatQrcodeHelper: '<p>Scan the QR code</p><p>and tap on the top right.</p>'
+    });
+  </script>
+  
+  {% if site.comments.disqus %}
+  <script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = '{{ site.comments.disqus_url }}';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  {% endif %}
+
+  <script src="{{ "/assets/js/prism.js" | relative_url }}"></script>
+  <script src="{{ "/assets/js/index.min.js" | relative_url }}"></script>
+
+</body>
+</html>
