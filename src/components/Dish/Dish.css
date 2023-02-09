@@ -1,0 +1,44 @@
+.background{
+    background-color: white !important;
+    box-shadow: 0 5px 30px rgb(0 22 84 / 10%);
+    padding: 0 0 15px 0;
+    margin: 20px auto;
+    width: 630px;
+    border-radius: 10px;
+}
+.dish_pic{
+    height: 220px;
+    display: block;
+    margin-top: 0 !important;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    border-radius: 10px 10px 0 0 ;
+}
+.container_dish h2{
+    margin-top: 10px;
+    font-size: 1.6em;
+}
+.container_dish p{
+    margin-top: 5px;
+    font-size: 1em;
+}
+.container_dish {
+    position: relative;
+    left: 50px;
+}
+.background h2 {
+    font-size: 20px;
+}
+.sign_pic{
+    position: absolute;
+    margin: 15px 0 0 550px;
+    width: 40px;
+}
+.Dish h1{
+    font-size: 2em;
+    text-align: center;
+    margin: 10px;
+    color: #5ea93f;
+    text-decoration: underline;
+}

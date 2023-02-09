@@ -1,0 +1,59 @@
+.ingredient_meat {
+    background-color: white !important;
+    padding: 0px 30px !important;
+    margin: auto;
+    width: 700px;
+}
+
+.ingredient_meat h1 {
+    font-size: 2.3em;
+}
+
+.ingredient_meat h2 {
+    margin-top: 10px;
+    font-size: 1.6em;
+}
+
+.ingredient_meat_pic {
+    height: 100px;
+    width: 230px;
+}
+
+.content_holder {
+    position: absolute;
+    left: 850px;
+}
+
+.item_holder {
+    margin: 20px 0px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow:3px 3px 10px gray;
+    background-color: whitesmoke;
+}
+
+.date::before {
+    content: '⏱️';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.date {
+    font-size: 1.3em;
+    margin-top: 10px;
+}
+
+.num_edit {
+    display: inline;
+    width: 20px;
+    height: 20px;
+    color: mediumseagreen;
+}
+
+.item_number {
+    position: absolute;
+    left: 250px;
+    top: 20px;
+}

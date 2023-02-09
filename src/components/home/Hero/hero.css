@@ -1,0 +1,62 @@
+.hero {
+    background-image: url("../../../../public/image/background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height:110vh;
+    width: 100%;
+}
+.hero .container{
+    padding-top: 5%;
+}
+.hero h1{
+    color: white;
+    font-size: 60px;
+    margin: 10px 0px !important;
+}
+.hero p{
+    color: white;
+    font-size: 40px;
+    opacity: 100%;
+    margin: 10px 0px !important;
+}
+.hero .btn{
+    border-radius: 5px;
+    padding: 17px 30px;
+    background-color: forestgreen;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+form{
+    background-color: white;
+    border-radius: 5px;
+    margin-top: 50px;
+    padding: 0 20px;
+}
+form input{
+    padding: 10px;
+    width: 100%;
+    border: 1px solid rgba(128,128,128,80%);
+    margin-top: 5px;
+    border-radius: 5px;
+}
+form span{
+    font-size: 14px;
+    color: grey;
+}
+input ::placeholder{
+    font-size: 17px;
+    color: black;
+}
+form .box{
+    padding: 15px;
+    border-left: 1px solid rgba(128,128,128,20%);
+}
+form .box:nth-child(1){
+    border-left: none;
+}
+form h4{
+    font-weight: 500;
+}
